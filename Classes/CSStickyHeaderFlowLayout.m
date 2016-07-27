@@ -164,6 +164,11 @@ static const NSInteger kHeaderZIndex = 1024;
                 }
                 if (!CGSizeEqualToSize(CGSizeZero, header.frame.size)) {
                     [self updateHeaderAttributes:header lastCellAttributes:lastCells[indexPathKey]];
+
+                    //Code below fixes some accessibility issues.
+                    if (UIAccessibilityIsVoiceOverRunning()) {
+                        [self invalidateLayout];
+                    }
                 }
             }];
         }
